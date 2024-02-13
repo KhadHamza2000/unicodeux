@@ -1,34 +1,38 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'sign_in_model.dart';
-export 'sign_in_model.dart';
+import 'form_inscription_model.dart';
+export 'form_inscription_model.dart';
 
-class SignInWidget extends StatefulWidget {
-  const SignInWidget({super.key});
+class FormInscriptionWidget extends StatefulWidget {
+  const FormInscriptionWidget({super.key});
 
   @override
-  State<SignInWidget> createState() => _SignInWidgetState();
+  State<FormInscriptionWidget> createState() => _FormInscriptionWidgetState();
 }
 
-class _SignInWidgetState extends State<SignInWidget> {
-  late SignInModel _model;
+class _FormInscriptionWidgetState extends State<FormInscriptionWidget> {
+  late FormInscriptionModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SignInModel());
+    _model = createModel(context, () => FormInscriptionModel());
 
-    _model.emailTextController ??= TextEditingController();
+    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.passwordTextController ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textController3 ??= TextEditingController();
+    _model.textFieldFocusNode3 ??= FocusNode();
   }
 
   @override
@@ -61,19 +65,15 @@ class _SignInWidgetState extends State<SignInWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(
-                'Sign In Page',
-                style: FlutterFlowTheme.of(context).bodyMedium,
-              ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
-                  controller: _model.emailTextController,
+                  controller: _model.textController1,
                   focusNode: _model.textFieldFocusNode1,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Email here...',
+                    labelText: 'Age here...',
                     labelStyle: FlutterFlowTheme.of(context).labelMedium,
                     hintStyle: FlutterFlowTheme.of(context).labelMedium,
                     enabledBorder: UnderlineInputBorder(
@@ -106,20 +106,19 @@ class _SignInWidgetState extends State<SignInWidget> {
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
-                  keyboardType: TextInputType.emailAddress,
                   validator:
-                      _model.emailTextControllerValidator.asValidator(context),
+                      _model.textController1Validator.asValidator(context),
                 ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                 child: TextFormField(
-                  controller: _model.passwordTextController,
+                  controller: _model.textController2,
                   focusNode: _model.textFieldFocusNode2,
                   autofocus: true,
-                  obscureText: !_model.passwordVisibility,
+                  obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Password here...',
+                    labelText: 'Gender here...',
                     labelStyle: FlutterFlowTheme.of(context).labelMedium,
                     hintStyle: FlutterFlowTheme.of(context).labelMedium,
                     enabledBorder: UnderlineInputBorder(
@@ -150,41 +149,69 @@ class _SignInWidgetState extends State<SignInWidget> {
                       ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    suffixIcon: InkWell(
-                      onTap: () => setState(
-                        () => _model.passwordVisibility =
-                            !_model.passwordVisibility,
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium,
+                  validator:
+                      _model.textController2Validator.asValidator(context),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                child: TextFormField(
+                  controller: _model.textController3,
+                  focusNode: _model.textFieldFocusNode3,
+                  autofocus: true,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'City here...',
+                    labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                    hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).alternate,
+                        width: 2.0,
                       ),
-                      focusNode: FocusNode(skipTraversal: true),
-                      child: Icon(
-                        _model.passwordVisibility
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                        size: 22,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primary,
+                        width: 2.0,
                       ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    errorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).error,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    focusedErrorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).error,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
-                  validator: _model.passwordTextControllerValidator
-                      .asValidator(context),
+                  validator:
+                      _model.textController3Validator.asValidator(context),
                 ),
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  GoRouter.of(context).prepareAuthEvent();
+                  await MoreAboutTheUsersRecord.createDoc(currentUserReference!)
+                      .set(createMoreAboutTheUsersRecordData(
+                    age: _model.textController1.text,
+                    gender: _model.textController2.text,
+                    email: _model.textController3.text,
+                  ));
 
-                  final user = await authManager.signInWithEmail(
-                    context,
-                    _model.emailTextController.text,
-                    _model.passwordTextController.text,
-                  );
-                  if (user == null) {
-                    return;
-                  }
-
-                  context.goNamedAuth('Homepage', context.mounted);
+                  context.pushNamed('Homepage');
                 },
-                text: 'Login\n',
+                text: 'Submit',
                 options: FFButtonOptions(
                   height: 40.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
@@ -201,19 +228,6 @@ class _SignInWidgetState extends State<SignInWidget> {
                     width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pushNamed('CreateAccount');
-                },
-                child: Text(
-                  'Create an Account',
-                  style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
             ],

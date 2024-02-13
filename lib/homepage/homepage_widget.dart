@@ -59,6 +59,11 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                 'Home Page',
                 style: FlutterFlowTheme.of(context).bodyMedium,
               ),
+              const Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [],
+              ),
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
                 child: FFButtonWidget(
