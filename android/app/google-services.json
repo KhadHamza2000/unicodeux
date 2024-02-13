@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "941789552403",
+    "project_id": "unicoduex-511fy9",
+    "storage_bucket": "unicoduex-511fy9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941789552403:android:80ef92c94e5ffe179804e6",
+        "android_client_info": {
+          "package_name": "com.mycompany.unicodeux"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqFmXzukojNpZ34RjdY7t8IRVJ0Oo4uH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
